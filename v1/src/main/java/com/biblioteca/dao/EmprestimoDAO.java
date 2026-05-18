@@ -139,4 +139,13 @@ public class EmprestimoDAO {
             return null;
         }
     }
+
+    public int emprestimosAtivos(int id) throws SQLException{
+        String sql = "SELECT COUNT(*)FROM emprestimo WHERE id_leitor = ? AND status = 'ATIVO'";
+        PreparedStatement comandoSql = conexao.prepareStatement(sql);
+        comandoSql.setInt(1,id);
+        ResultSet rs = comandoSql.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
 }

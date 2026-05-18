@@ -22,7 +22,6 @@ public class ReservaDAO {
 
     public void inserir(Reserva obj) throws SQLException{
         String sql = "INSERT INTO reserva (data_reserva, status, id_obra, id_leitor) VALUES (?,?,?,?) ";
-
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
         comandoSql.setString(1, obj.getDataReserva());
@@ -31,13 +30,11 @@ public class ReservaDAO {
         comandoSql.setInt(4, obj.getLeitor().getId());
 
         comandoSql.executeUpdate();
-
         System.out.println("Reserva cadastrada com sucesso!");
     }
 
     public void atualizar(Reserva obj) throws SQLException{
         String sql = "UPDATE reserva SET data_reserva=?, status=?, id_obra=?, id_leitor=? WHERE id=? ";
-
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
         comandoSql.setString(1, obj.getDataReserva());
@@ -47,7 +44,6 @@ public class ReservaDAO {
         comandoSql.setInt(5, obj.getId());
 
         comandoSql.executeUpdate();
-
         System.out.println("Reserva atualizada com sucesso!");
     }
 
@@ -124,5 +120,14 @@ public class ReservaDAO {
         else{
             return null;
         }
+    }
+
+    public int reservasAtivas(int id)throws SQLException{
+        String sql = "SELECT COUNT(*)FROM reserva WHERE id_leitor = ? AND status = 'ATIVO'";
+        PreparedStatement comandoSql = conexao.prepareStatement(sql);
+        comandoSql.setInt(1,id);
+        ResultSet rs = comandoSql.executeQuery();
+        rs.next();
+        return rs.getInt(1);
     }
 }

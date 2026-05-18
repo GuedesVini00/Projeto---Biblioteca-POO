@@ -98,4 +98,19 @@ public class CopiaDAO {
             return null;
         }
     }
+
+    public boolean existeCopiaDisponivel(int idObra)throws SQLException{
+
+        String sql ="SELECT COUNT(*) FROM copia WHERE id_obra = ? AND status = 'DISPONIVEL'";
+        PreparedStatement comandoSql = conexao.prepareStatement(sql);
+        comandoSql.setInt(1, idObra);
+
+        ResultSet rs = comandoSql.executeQuery();
+
+        rs.next();
+
+        int quantidade = rs.getInt(1);
+
+        return quantidade > 0;
+    }
 }

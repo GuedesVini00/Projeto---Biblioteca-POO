@@ -18,6 +18,7 @@ public class EmprestimoService {
 
     public EmprestimoService() throws SQLException {
 
+        
         emprestimoDAO = new EmprestimoDAO();
 
         copiaDAO = new CopiaDAO();
@@ -25,12 +26,22 @@ public class EmprestimoService {
         leitorDAO = new LeitorDAO();
 
         funcionarioDAO = new FuncionarioDAO();
-        }
+    }
 
-        public void realizarEmprestimo(int idCopia,int idLeitor,int idFuncionario)throws SQLException{
+    public void realizarEmprestimo(int idCopia,int idLeitor,int idFuncionario)throws SQLException{
+
+        int quantidade = emprestimoDAO.emprestimosAtivos(idLeitor);
+        if(quantidade >= 3){
+            System.out.println("Limite de emprestimos atingido!");
+            return;
+        }
 
         Copia copia = copiaDAO.buscarPorId(idCopia);
 
+        if(copia == null){
+            System.out.println("Cópia não encontrada!");
+            return;
+        }   
         if(!copia.estaDisponivel()){
             System.out.println("Cópia indisponível");
             return;
@@ -44,25 +55,18 @@ public class EmprestimoService {
         String dataDevolucaoo = hoje.plusDays(15).toString();
 
         emp.setDataSaida(dataSaida);
-
         emp.setDataDevolucao(dataDevolucaoo);
-
         emp.setCopia(copia);
-
         emp.setLeitor(leitorDAO.buscarPorId(idLeitor));
-
         emp.setFuncionario(funcionarioDAO.buscarPorId(idFuncionario));
-
         emp.ativar();
-
         copia.emprestar();
-
         emprestimoDAO.inserir(emp);
-
         copiaDAO.atualizar(copia);
 
         System.out.println("Empréstimo realizado!");
     }   
+
 
     public void realizarDevolucao(int idEmprestimo) throws SQLException{
         var emp = emprestimoDAO.buscarPorId(idEmprestimo);
@@ -71,24 +75,19 @@ public class EmprestimoService {
             System.out.println("Emprestimo não encontrado!");
             return;
         }
-
         if(emp.estaFinalizado()){
             System.out.println("Copia ja foi devolvida!");
             return;
         }
 
         emp.finalizar();
-
         emp.getCopia().devolver();
 
         LocalDate hoje = LocalDate.now();
         String dataDevolucao = hoje.toString();
 
         emp.setDataDevolucao(dataDevolucao);
-
         emprestimoDAO.atualizar(emp);
-
         copiaDAO.atualizar(emp.getCopia());
     }
-
 }
