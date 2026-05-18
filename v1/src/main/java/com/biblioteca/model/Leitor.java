@@ -5,4 +5,5 @@ public class Leitor extends Pessoa{
     public String toString() {  
         return getNome();
     }
+    
 }
