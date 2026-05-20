@@ -9,11 +9,12 @@ public class MainTeste {
 
     public static void main(String[] args) {
 
-        //OP DE EMPRESTIMOS:
-        try {
-
+        //OP DE EMPRESTIMOS: 
+        
+        try { 
+  
             EmprestimoService service =new EmprestimoService();
-
+ 
             // REALIZAR EMPRÉSTIMO
            // service.realizarEmprestimo(idCopia,idLeitor ,idFuncionario );
 
