@@ -80,7 +80,7 @@ public class TelaLeitor extends JFrame {
 
             JFormattedTextField campoTelefone = new JFormattedTextField(formatoTelefone);
 
-            txtCpf = campoTelefone;
+            txtTelefone = campoTelefone;
 
             painel.add(campoTelefone);
 
