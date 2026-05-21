@@ -47,12 +47,12 @@ public class ReservaDAO {
         System.out.println("Reserva atualizada com sucesso!");
     }
 
-    public void excluir(Reserva obj) throws SQLException{
+    public void excluir(int id) throws SQLException{
         String sql = "DELETE FROM reserva WHERE id=? ";
 
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
-        comandoSql.setInt(1, obj.getId());
+        comandoSql.setInt(1, id);
 
         comandoSql.executeUpdate();
 

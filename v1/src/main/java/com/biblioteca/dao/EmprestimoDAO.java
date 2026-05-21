@@ -59,11 +59,11 @@ public class EmprestimoDAO {
         System.out.println("Emprestimo atualizado com sucesso!");
     }
 
-    public void excluir(Emprestimo obj) throws SQLException{
+    public void excluir(int id) throws SQLException{
 
         String sql = "DELETE FROM emprestimo WHERE id=?";
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
-        comandoSql.setInt(1, obj.getId());
+        comandoSql.setInt(1,id);
         comandoSql.executeUpdate();
         System.out.println("Emprestimo excluido com sucesso!");
     }
@@ -83,17 +83,32 @@ public class EmprestimoDAO {
             emprestimo.setDataDevolucao(rs.getString("data_devolucao"));
             emprestimo.setStatus(rs.getString("status"));
 
-            var copia = new Copia();
-            copia.setId(rs.getInt("id_copia"));
+            CopiaDAO copiaDAO =
+            new CopiaDAO();
 
-            var leitor = new Leitor();
-            leitor.setId(rs.getInt("id_leitor"));
+            LeitorDAO leitorDAO =
+                    new LeitorDAO();
 
-            var funcionario = new Funcionario();
-            funcionario.setId(rs.getInt("id_funcionario"));
-            emprestimo.setCopia(copia);
-            emprestimo.setLeitor(leitor);
-            emprestimo.setFuncionario(funcionario);
+            FuncionarioDAO funcionarioDAO =
+                    new FuncionarioDAO();
+
+            emprestimo.setCopia(
+                    copiaDAO.buscarPorId(
+                            rs.getInt("id_copia")
+                    )
+            );
+
+            emprestimo.setLeitor(
+                    leitorDAO.buscarPorId(
+                            rs.getInt("id_leitor")
+                    )
+            );
+
+            emprestimo.setFuncionario(
+                    funcionarioDAO.buscarPorId(
+                            rs.getInt("id_funcionario")
+                    )
+            );
 
             lista.add(emprestimo);
         }
