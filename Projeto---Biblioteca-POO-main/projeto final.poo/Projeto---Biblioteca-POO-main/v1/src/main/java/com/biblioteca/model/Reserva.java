@@ -1,5 +1,5 @@
 package com.biblioteca.model;
-import com.enums.StatusReserva;
+import com.biblioteca.enums.StatusReserva;
 
 public class Reserva {
     private int id;

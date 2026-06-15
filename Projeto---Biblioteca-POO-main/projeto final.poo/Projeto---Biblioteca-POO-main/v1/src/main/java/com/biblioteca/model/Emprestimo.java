@@ -1,6 +1,6 @@
 package com.biblioteca.model;
 
-import com.enums.StatusEmprestimo;
+import com.biblioteca.enums.StatusEmprestimo;
 
 public class Emprestimo {
     private int id;

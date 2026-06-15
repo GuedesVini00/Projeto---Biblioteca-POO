@@ -1,9 +1,9 @@
 package com.biblioteca.dao;
 
 import com.biblioteca.bd.ConexaoSQL;
+import com.biblioteca.enums.StatusCopia;
 import com.biblioteca.model.Copia;
 import com.biblioteca.model.Obra;
-import com.enums.StatusCopia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

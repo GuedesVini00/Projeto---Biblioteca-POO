@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.biblioteca.bd.ConexaoSQL;
+import com.biblioteca.enums.StatusEmprestimo;
 import com.biblioteca.model.Copia;
 import com.biblioteca.model.Emprestimo;
 import com.biblioteca.model.Funcionario;
 import com.biblioteca.model.Leitor;
-import com.enums.StatusEmprestimo;
 
 public class EmprestimoDAO {
 

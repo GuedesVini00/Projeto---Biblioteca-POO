@@ -1,6 +1,6 @@
 package com.biblioteca.model;
 
-import com.enums.StatusCopia;
+import com.biblioteca.enums.StatusCopia;
 
 public class Copia {
 

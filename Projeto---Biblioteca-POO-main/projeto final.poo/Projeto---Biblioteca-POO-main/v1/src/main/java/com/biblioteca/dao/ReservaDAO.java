@@ -1,10 +1,10 @@
 package com.biblioteca.dao;
 
 import com.biblioteca.bd.ConexaoSQL;
+import com.biblioteca.enums.StatusReserva;
 import com.biblioteca.model.Leitor;
 import com.biblioteca.model.Obra;
 import com.biblioteca.model.Reserva;
-import com.enums.StatusReserva;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

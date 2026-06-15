@@ -9,9 +9,8 @@ import com.biblioteca.dao.FuncionarioDAO;
 import com.biblioteca.dao.LeitorDAO;
 import com.biblioteca.dao.ObraDAO;
 import com.biblioteca.dao.ReservaDAO;
-
+import com.biblioteca.enums.StatusReserva;
 import com.biblioteca.model.Reserva;
-import com.enums.StatusReserva;
 
 public class ReservaService {
 
