@@ -11,6 +11,7 @@ import com.biblioteca.dao.ObraDAO;
 import com.biblioteca.dao.ReservaDAO;
 
 import com.biblioteca.model.Reserva;
+import com.enums.StatusReserva;
 
 public class ReservaService {
 
@@ -67,9 +68,9 @@ public class ReservaService {
         LocalDate hoje = LocalDate.now();
 
         reserva.setDataReserva(hoje.toString());
-        reserva.setStatus("ATIVA");
+        reserva.setStatus(StatusReserva.ATIVA);
         reserva.setObra(obra);
-        reserva.setLeitor(leitor);
+        reserva.setLeitor(leitor);  
 
         reservaDAO.inserir(reserva);
         System.out.println( "Reserva realizada!" );
@@ -84,12 +85,12 @@ public class ReservaService {
             return;
         }
 
-        if(reserva.getStatus().equalsIgnoreCase("CANCELADA")){
+        if(reserva.getStatus() == StatusReserva.CANCELADA){
             System.out.println("Reserva já cancelada!" );
             return;
         }
 
-        reserva.setStatus("CANCELADA");
+        reserva.setStatus(StatusReserva.CANCELADA);
         reservaDAO.atualizar(reserva);
         System.out.println("Reserva cancelada!" );
     }
@@ -103,12 +104,12 @@ public class ReservaService {
             return;
         }
 
-        if(reserva.getStatus() .equalsIgnoreCase("FINALIZADA")){
+        if(reserva.getStatus() == StatusReserva.FINALIZADA){
             System.out.println("Reserva já finalizada!");
             return;
         }
 
-        reserva.setStatus("FINALIZADA");
+        reserva.setStatus(StatusReserva.FINALIZADA);
         reservaDAO.atualizar(reserva);
         System.out.println( "Reserva finalizada!" );
     }

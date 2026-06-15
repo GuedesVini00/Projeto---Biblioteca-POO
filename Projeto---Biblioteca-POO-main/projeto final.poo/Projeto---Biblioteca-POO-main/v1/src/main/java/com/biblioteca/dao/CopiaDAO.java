@@ -3,6 +3,7 @@ package com.biblioteca.dao;
 import com.biblioteca.bd.ConexaoSQL;
 import com.biblioteca.model.Copia;
 import com.biblioteca.model.Obra;
+import com.enums.StatusCopia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +25,7 @@ public class CopiaDAO {
         String sql = "INSERT INTO copia (codigo_patrimonio, status, id_obra) VALUES (?,?,?) ";
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
         comandoSql.setString(1, obj.getCodigoPatrimonio().toUpperCase());
-        comandoSql.setString(2, obj.getStatus().toUpperCase());
+        comandoSql.setString(2, obj.getStatus().name());
         comandoSql.setInt(3, obj.getObra().getId());
         comandoSql.executeUpdate();
         System.out.println("Copia cadastrada com sucesso!");
@@ -35,7 +36,7 @@ public class CopiaDAO {
         String sql = "UPDATE copia SET codigo_patrimonio=?, status=?, id_obra=? WHERE id=? ";
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
         comandoSql.setString(1, obj.getCodigoPatrimonio().toUpperCase());
-        comandoSql.setString(2, obj.getStatus().toUpperCase());
+        comandoSql.setString(2, obj.getStatus().name());
         comandoSql.setInt(3, obj.getObra().getId());
         comandoSql.setInt(4, obj.getId());
         comandoSql.executeUpdate();
@@ -63,7 +64,7 @@ public class CopiaDAO {
             var copia = new Copia();
             copia.setId(rs.getInt("id"));
             copia.setCodigoPatrimonio(rs.getString("codigo_patrimonio"));
-            copia.setStatus(rs.getString("status"));
+            copia.setStatus(StatusCopia.valueOf(rs.getString("status")));
 
             var obra = new Obra();
             obra.setId(rs.getInt("id_obra"));
@@ -87,7 +88,7 @@ public class CopiaDAO {
             var copia = new Copia();
             copia.setId(rs.getInt("id"));
             copia.setCodigoPatrimonio(rs.getString("codigo_patrimonio"));
-            copia.setStatus(rs.getString("status"));
+            copia.setStatus(StatusCopia.valueOf(rs.getString("status")));
 
             var obra = new Obra();
             obra.setId(rs.getInt("id_obra"));
@@ -101,9 +102,10 @@ public class CopiaDAO {
 
     public boolean existeCopiaDisponivel(int idObra)throws SQLException{
 
-        String sql ="SELECT COUNT(*) FROM copia WHERE id_obra = ? AND status = 'DISPONIVEL'";
+        String sql ="SELECT COUNT(*) FROM copia WHERE id_obra = ? AND status = ?";
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
         comandoSql.setInt(1, idObra);
+        comandoSql.setString(2, StatusCopia.DISPONIVEL.name());
 
         ResultSet rs = comandoSql.executeQuery();
 

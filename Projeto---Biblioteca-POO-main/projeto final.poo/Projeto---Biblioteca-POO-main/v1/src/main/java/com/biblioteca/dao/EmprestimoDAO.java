@@ -12,6 +12,7 @@ import com.biblioteca.model.Copia;
 import com.biblioteca.model.Emprestimo;
 import com.biblioteca.model.Funcionario;
 import com.biblioteca.model.Leitor;
+import com.enums.StatusEmprestimo;
 
 public class EmprestimoDAO {
 
@@ -33,7 +34,7 @@ public class EmprestimoDAO {
 
         comandoSql.setString(1, obj.getDataSaida());
         comandoSql.setString(2, obj.getDataDevolucao());
-        comandoSql.setString(3, obj.getStatus().toUpperCase());
+        comandoSql.setString(3, obj.getStatus().name());
         comandoSql.setInt(4, obj.getCopia().getId());
         comandoSql.setInt(5, obj.getLeitor().getId());
         comandoSql.setInt(6, obj.getFuncionario().getId());
@@ -57,7 +58,7 @@ public class EmprestimoDAO {
 
         comandoSql.setString(1, obj.getDataSaida());
         comandoSql.setString(2, obj.getDataDevolucao());
-        comandoSql.setString(3, obj.getStatus().toUpperCase());
+        comandoSql.setString(3, obj.getStatus().name());
         comandoSql.setInt(4, obj.getCopia().getId());
         comandoSql.setInt(5, obj.getLeitor().getId());
         comandoSql.setInt(6, obj.getFuncionario().getId());
@@ -116,7 +117,7 @@ public class EmprestimoDAO {
             emprestimo.setId(rs.getInt("id"));
             emprestimo.setDataSaida(rs.getString("data_saida"));
             emprestimo.setDataDevolucao(rs.getString("data_devolucao"));
-            emprestimo.setStatus(rs.getString("status"));
+            emprestimo.setStatus(StatusEmprestimo.valueOf(rs.getString("status")));
 
             Copia copia = new Copia();
             copia.setId(rs.getInt("id_copia"));
@@ -160,7 +161,7 @@ public class EmprestimoDAO {
             emprestimo.setId(rs.getInt("id"));
             emprestimo.setDataSaida(rs.getString("data_saida"));
             emprestimo.setDataDevolucao(rs.getString("data_devolucao"));
-            emprestimo.setStatus(rs.getString("status"));
+            emprestimo.setStatus(StatusEmprestimo.valueOf(rs.getString("status")));
 
             Copia copia = new Copia();
             copia.setId(rs.getInt("id_copia"));

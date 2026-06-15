@@ -3,5 +3,17 @@ package com.enums;
 public enum StatusReserva {
     ATIVA,
     CANCELADA,
-    FINALIZADA
+    FINALIZADA;
+
+    private StatusReserva status;
+
+    public StatusReserva getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusReserva status) {
+        this.status = status;
+    }
 }
+
+

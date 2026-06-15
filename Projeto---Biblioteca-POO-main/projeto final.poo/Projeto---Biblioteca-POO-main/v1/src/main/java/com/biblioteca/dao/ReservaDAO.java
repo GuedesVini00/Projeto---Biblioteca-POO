@@ -4,6 +4,7 @@ import com.biblioteca.bd.ConexaoSQL;
 import com.biblioteca.model.Leitor;
 import com.biblioteca.model.Obra;
 import com.biblioteca.model.Reserva;
+import com.enums.StatusReserva;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ public class ReservaDAO {
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
         comandoSql.setString(1, obj.getDataReserva());
-        comandoSql.setString(2, obj.getStatus().toUpperCase());
+        comandoSql.setString(2, obj.getStatus().name());
         comandoSql.setInt(3, obj.getObra().getId());
         comandoSql.setInt(4, obj.getLeitor().getId());
 
@@ -38,7 +39,7 @@ public class ReservaDAO {
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
         comandoSql.setString(1, obj.getDataReserva());
-        comandoSql.setString(2, obj.getStatus().toUpperCase());
+        comandoSql.setString(2, obj.getStatus().name());
         comandoSql.setInt(3, obj.getObra().getId());
         comandoSql.setInt(4, obj.getLeitor().getId());
         comandoSql.setInt(5, obj.getId());
@@ -74,7 +75,7 @@ public class ReservaDAO {
 
             reserva.setId(rs.getInt("id"));
             reserva.setDataReserva(rs.getString("data_reserva"));
-            reserva.setStatus(rs.getString("status"));
+            reserva.setStatus(StatusReserva.valueOf(rs.getString("status")));
 
             var obra = new Obra();
             obra.setId(rs.getInt("id_obra"));
@@ -105,7 +106,7 @@ public class ReservaDAO {
             var reserva = new Reserva();
             reserva.setId(rs.getInt("id"));
             reserva.setDataReserva(rs.getString("data_reserva"));
-            reserva.setStatus(rs.getString("status"));
+            reserva.setStatus(StatusReserva.valueOf(rs.getString("status")));
 
             var obra = new Obra();
             obra.setId(rs.getInt("id_obra"));
