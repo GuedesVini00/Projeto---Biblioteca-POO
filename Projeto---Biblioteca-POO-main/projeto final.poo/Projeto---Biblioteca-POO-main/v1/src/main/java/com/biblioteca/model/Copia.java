@@ -1,10 +1,12 @@
 package com.biblioteca.model;
 
+import com.enums.StatusCopia;
+
 public class Copia {
 
     private int id;
     private String codigoPatrimonio;
-    private String status;
+    private StatusCopia status;
     private Obra obra;
 
     public int getId() {
@@ -23,11 +25,11 @@ public class Copia {
         this.codigoPatrimonio = codigoPatrimonio;
     }
 
-    public String getStatus() {
+    public StatusCopia getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusCopia status) {
         this.status = status;
     }
 
@@ -49,28 +51,27 @@ public class Copia {
         return codigoPatrimonio;
     }
 
-     public boolean estaDisponivel(){
-        return status.equalsIgnoreCase("Disponivel");
+    public boolean estaDisponivel() {
+    return status == StatusCopia.DISPONIVEL;
     }
 
-    public boolean estaReservada(){
-        return status.equalsIgnoreCase("Reservado");
+    public boolean estaReservada() {
+        return status == StatusCopia.RESERVADO;
     }
 
-    public void reservar(){
-        status = "Reservado";
+    public void reservar() {
+        status = StatusCopia.RESERVADO;
     }
 
-    public void cancelarReserva(){
-        status = "Disponivel";
+    public void cancelarReserva() {
+        status = StatusCopia.DISPONIVEL;
     }
 
-    public void emprestar(){
-        status = "Emprestado";
+    public void emprestar() {
+        status = StatusCopia.EMPRESTADO;
     }
 
-    public void devolver(){
-        status = "Disponivel";
+    public void devolver() {
+        status = StatusCopia.DISPONIVEL;
     }
-
 }

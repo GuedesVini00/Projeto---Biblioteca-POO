@@ -1,11 +1,12 @@
 package com.biblioteca.model;
+import com.enums.StatusReserva;
 
 public class Reserva {
     private int id;
     private String dataReserva;
     private Obra obra;
     private Leitor leitor;
-    private String status;
+    private StatusReserva status;
 
     public int getId() {
         return id;
@@ -31,26 +32,26 @@ public class Reserva {
     public void setLeitor(Leitor leitor) {
         this.leitor = leitor;
     }
-    public String getStatus() {
+    public StatusReserva getStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public void setStatus(StatusReserva status) {
         this.status = status;
     }
 
     public boolean estaAtiva(){
-        return status.equalsIgnoreCase("Ativa");
+        return status == StatusReserva.ATIVA;
     }
 
     public boolean estaCancelada(){
-        return status.equalsIgnoreCase("Cancelada");
+        return status == StatusReserva.CANCELADA;
     }
 
     public void cancelar(){
-        status = "Cancelada";
+        status = StatusReserva.CANCELADA;
     }
 
     public void finalizar(){
-        status = "Finalizada";
+        status = StatusReserva.FINALIZADA;
     }
 }

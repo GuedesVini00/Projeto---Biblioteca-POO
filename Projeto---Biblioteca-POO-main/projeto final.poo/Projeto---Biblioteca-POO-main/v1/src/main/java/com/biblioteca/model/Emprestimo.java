@@ -1,5 +1,7 @@
 package com.biblioteca.model;
 
+import com.enums.StatusEmprestimo;
+
 public class Emprestimo {
     private int id;
     private String dataSaida;
@@ -7,7 +9,7 @@ public class Emprestimo {
     private Copia copia;
     private Leitor leitor;
     private Funcionario funcionario;
-    private String status;
+    private StatusEmprestimo status;
 
     public int getId() {
         return id;
@@ -45,10 +47,10 @@ public class Emprestimo {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-    public String getStatus() {
+    public StatusEmprestimo getStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public void setStatus(StatusEmprestimo status) {
         this.status = status;
     }
 
@@ -58,18 +60,18 @@ public class Emprestimo {
     }
 
     public boolean estaAtivo(){
-        return status.equalsIgnoreCase("ATIVO");
+        return status == StatusEmprestimo.ATIVO;
     }
 
      public boolean estaFinalizado(){
-        return status.equalsIgnoreCase("FINALIZADO");
+        return status == StatusEmprestimo.FINALIZADO;
     }
 
     public void ativar(){
-        status = "ATIVO";
+        status = StatusEmprestimo.ATIVO;
     }
 
     public void finalizar(){
-        status = "FINALIZADO";
+        status = StatusEmprestimo.FINALIZADO;
     }
 }
