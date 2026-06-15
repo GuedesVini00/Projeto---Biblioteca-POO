@@ -1,11 +1,13 @@
 package com.biblioteca.model;
 
+import java.time.LocalDate;
+
 import com.biblioteca.enums.StatusEmprestimo;
 
 public class Emprestimo {
     private int id;
-    private String dataSaida;
-    private String dataDevolucao;
+    private LocalDate dataSaida;
+    private LocalDate dataDevolucao;
     private Copia copia;
     private Leitor leitor;
     private Funcionario funcionario;
@@ -17,16 +19,16 @@ public class Emprestimo {
     public void setId(int id) {
         this.id = id;
     }
-    public String getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
-    public void setDataSaida(String dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
-    public String getDataDevolucao() {
+    public LocalDate getDataDevolucao() {
         return dataDevolucao;
     }
-    public void setDataDevolucao(String dataDevolucao) {
+    public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
     public Copia getCopia() {

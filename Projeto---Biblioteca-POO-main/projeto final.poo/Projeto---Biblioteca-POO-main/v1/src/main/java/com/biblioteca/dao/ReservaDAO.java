@@ -25,7 +25,7 @@ public class ReservaDAO {
         String sql = "INSERT INTO reserva (data_reserva, status, id_obra, id_leitor) VALUES (?,?,?,?) ";
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
-        comandoSql.setString(1, obj.getDataReserva());
+        comandoSql.setDate(1, java.sql.Date.valueOf(obj.getDataReserva()));
         comandoSql.setString(2, obj.getStatus().name());
         comandoSql.setInt(3, obj.getObra().getId());
         comandoSql.setInt(4, obj.getLeitor().getId());
@@ -38,7 +38,7 @@ public class ReservaDAO {
         String sql = "UPDATE reserva SET data_reserva=?, status=?, id_obra=?, id_leitor=? WHERE id=? ";
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
-        comandoSql.setString(1, obj.getDataReserva());
+        comandoSql.setDate(1, java.sql.Date.valueOf(obj.getDataReserva()));
         comandoSql.setString(2, obj.getStatus().name());
         comandoSql.setInt(3, obj.getObra().getId());
         comandoSql.setInt(4, obj.getLeitor().getId());
@@ -74,7 +74,7 @@ public class ReservaDAO {
             var reserva = new Reserva();
 
             reserva.setId(rs.getInt("id"));
-            reserva.setDataReserva(rs.getString("data_reserva"));
+            reserva.setDataReserva(rs.getDate("data_reserva").toLocalDate());
             reserva.setStatus(StatusReserva.valueOf(rs.getString("status")));
 
             var obra = new Obra();
@@ -105,7 +105,7 @@ public class ReservaDAO {
 
             var reserva = new Reserva();
             reserva.setId(rs.getInt("id"));
-            reserva.setDataReserva(rs.getString("data_reserva"));
+            reserva.setDataReserva(rs.getDate("data_reserva").toLocalDate());
             reserva.setStatus(StatusReserva.valueOf(rs.getString("status")));
 
             var obra = new Obra();

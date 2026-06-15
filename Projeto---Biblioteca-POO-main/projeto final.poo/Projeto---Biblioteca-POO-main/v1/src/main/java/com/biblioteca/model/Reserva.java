@@ -1,9 +1,11 @@
 package com.biblioteca.model;
+import java.time.LocalDate;
+
 import com.biblioteca.enums.StatusReserva;
 
 public class Reserva {
     private int id;
-    private String dataReserva;
+    private LocalDate dataReserva;
     private Obra obra;
     private Leitor leitor;
     private StatusReserva status;
@@ -14,10 +16,10 @@ public class Reserva {
     public void setId(int id) {
         this.id = id;
     }
-    public String getDataReserva() {
+    public LocalDate getDataReserva() {
         return dataReserva;
     }
-    public void setDataReserva(String dataReserva) {
+    public void setDataReserva(LocalDate dataReserva) {
         this.dataReserva = dataReserva;
     }
     public Obra getObra() {

@@ -66,7 +66,7 @@ public class ReservaService {
 
         LocalDate hoje = LocalDate.now();
 
-        reserva.setDataReserva(hoje.toString());
+        reserva.setDataReserva(hoje);
         reserva.setStatus(StatusReserva.ATIVA);
         reserva.setObra(obra);
         reserva.setLeitor(leitor);  

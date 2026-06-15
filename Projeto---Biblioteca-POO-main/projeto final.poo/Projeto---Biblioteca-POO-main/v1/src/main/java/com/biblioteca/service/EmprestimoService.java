@@ -50,9 +50,9 @@ public class EmprestimoService {
         Emprestimo emp = new Emprestimo();
 
         LocalDate hoje = LocalDate.now();
-        String dataSaida = hoje.toString();
+        LocalDate dataSaida = hoje;
+        LocalDate dataDevolucaoo = hoje.plusDays(30);
 
-        String dataDevolucaoo = hoje.plusDays(15).toString();
 
         emp.setDataSaida(dataSaida);
         emp.setDataDevolucao(dataDevolucaoo);
@@ -84,7 +84,7 @@ public class EmprestimoService {
         emp.getCopia().devolver();
 
         LocalDate hoje = LocalDate.now();
-        String dataDevolucao = hoje.toString();
+        LocalDate dataDevolucao = hoje;
 
         emp.setDataDevolucao(dataDevolucao);
         emprestimoDAO.atualizar(emp);

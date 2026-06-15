@@ -32,8 +32,8 @@ public class EmprestimoDAO {
 
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
-        comandoSql.setString(1, obj.getDataSaida());
-        comandoSql.setString(2, obj.getDataDevolucao());
+        comandoSql.setDate(1, java.sql.Date.valueOf(obj.getDataSaida()));
+        comandoSql.setDate(2, java.sql.Date.valueOf(obj.getDataDevolucao()));
         comandoSql.setString(3, obj.getStatus().name());
         comandoSql.setInt(4, obj.getCopia().getId());
         comandoSql.setInt(5, obj.getLeitor().getId());
@@ -56,8 +56,8 @@ public class EmprestimoDAO {
 
         PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
-        comandoSql.setString(1, obj.getDataSaida());
-        comandoSql.setString(2, obj.getDataDevolucao());
+        comandoSql.setDate(1, java.sql.Date.valueOf(obj.getDataSaida()));
+        comandoSql.setDate(2, java.sql.Date.valueOf(obj.getDataDevolucao()));
         comandoSql.setString(3, obj.getStatus().name());
         comandoSql.setInt(4, obj.getCopia().getId());
         comandoSql.setInt(5, obj.getLeitor().getId());
@@ -115,8 +115,8 @@ public class EmprestimoDAO {
             Emprestimo emprestimo = new Emprestimo();
 
             emprestimo.setId(rs.getInt("id"));
-            emprestimo.setDataSaida(rs.getString("data_saida"));
-            emprestimo.setDataDevolucao(rs.getString("data_devolucao"));
+            emprestimo.setDataSaida(rs.getDate("data_saida").toLocalDate());
+            emprestimo.setDataDevolucao(rs.getDate("data_devolucao").toLocalDate());
             emprestimo.setStatus(StatusEmprestimo.valueOf(rs.getString("status")));
 
             Copia copia = new Copia();
@@ -159,8 +159,8 @@ public class EmprestimoDAO {
             Emprestimo emprestimo = new Emprestimo();
 
             emprestimo.setId(rs.getInt("id"));
-            emprestimo.setDataSaida(rs.getString("data_saida"));
-            emprestimo.setDataDevolucao(rs.getString("data_devolucao"));
+            emprestimo.setDataSaida(rs.getDate("data_saida").toLocalDate());
+            emprestimo.setDataDevolucao(rs.getDate("data_devolucao").toLocalDate());
             emprestimo.setStatus(StatusEmprestimo.valueOf(rs.getString("status")));
 
             Copia copia = new Copia();
