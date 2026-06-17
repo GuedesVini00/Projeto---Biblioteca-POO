@@ -17,8 +17,8 @@ public class ReservaDAO {
 
     private Connection conexao;
 
-    public ReservaDAO() throws SQLException{
-        conexao = ConexaoSQL.conectar();
+    public ReservaDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public void inserir(Reserva obj) throws SQLException{

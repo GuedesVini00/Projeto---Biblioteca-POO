@@ -14,8 +14,8 @@ import java.util.List;
 public class ObraDAO {
  private Connection conexao;
 
-    public ObraDAO() throws SQLException{
-        conexao = ConexaoSQL.conectar();
+    public ObraDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public void inserir(Obra obj) throws SQLException{

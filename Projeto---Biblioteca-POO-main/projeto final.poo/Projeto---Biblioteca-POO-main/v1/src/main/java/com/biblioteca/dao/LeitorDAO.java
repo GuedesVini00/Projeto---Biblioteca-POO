@@ -13,8 +13,8 @@ import java.util.List;
 public class LeitorDAO {
     private Connection conexao;
 
-    public LeitorDAO ()throws SQLException{
-        conexao = ConexaoSQL.conectar();
+    public LeitorDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public void inserir(Leitor obj) throws SQLException{

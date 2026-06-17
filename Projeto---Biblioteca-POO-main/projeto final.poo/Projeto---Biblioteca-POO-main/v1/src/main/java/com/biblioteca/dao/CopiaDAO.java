@@ -16,8 +16,8 @@ public class CopiaDAO {
 
     private Connection conexao;
 
-    public CopiaDAO() throws SQLException{
-        conexao = ConexaoSQL.conectar();
+    public CopiaDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public void inserir(Copia obj) throws SQLException{

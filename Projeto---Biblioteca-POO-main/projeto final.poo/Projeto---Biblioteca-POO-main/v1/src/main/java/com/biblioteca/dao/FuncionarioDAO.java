@@ -14,8 +14,8 @@ public class FuncionarioDAO {
 
     private Connection conexao;
 
-    public FuncionarioDAO() throws SQLException{
-        conexao = ConexaoSQL.conectar();
+    public FuncionarioDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public void inserir(Funcionario obj) throws SQLException{

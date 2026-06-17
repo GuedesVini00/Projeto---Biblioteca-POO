@@ -18,8 +18,8 @@ public class EmprestimoDAO {
 
     private Connection conexao;
 
-    public EmprestimoDAO() throws SQLException {
-        conexao = ConexaoSQL.conectar();
+    public EmprestimoDAO(Connection conexao)  {
+        this.conexao = conexao;
     }
 
     public void inserir(Emprestimo obj) throws SQLException {
