@@ -70,7 +70,7 @@ public class ReservaDAO {
         List<Reserva> lista = new ArrayList<>();
 
         while(rs.next()){
-
+            
             var reserva = new Reserva();
 
             reserva.setId(rs.getInt("id"));
